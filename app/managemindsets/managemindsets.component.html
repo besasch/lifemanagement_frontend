@@ -1,0 +1,67 @@
+<div class="container" *ngIf="mindsets">
+    <div class="row">
+  		<div class="col-sm-12">
+		    <div class="table-responsive">
+			    <table class="table table-condensed table-striped">
+				   <thead>
+				      <tr>
+						<th style="width: 15%;"><a href="">Name</a></th> 
+						<th style="width: 30%;"><a href="">Destruktiver Glaubenssatz</a></th>
+						<th style="width: 30%;"><a href="">Hilfreicher Glaubenssatz</a></th>
+				        <th style="width: 15%;"><a href="">Status</a></th> 
+				      	<th style="width: 10%;"><a href="">Aktionen</a></th> 
+				      </tr>
+			      </thead>
+			      <tbody>
+				      <tr class="orderRow" *ngFor="let mindset of mindsets; let i=index; ">				        
+						        <td *ngIf="editIndex !== i">{{mindset.name}}</td>
+						        <td *ngIf="editIndex !== i">{{mindset.oldMindset}}</td>
+						        <td *ngIf="editIndex !== i">{{mindset.newMindset}}</td>
+						        <td *ngIf="editIndex !== i">{{mindset.status}}</td>
+						        <td *ngIf="editIndex !== i">
+						        	<a data-toggle="tooltip" data-placement="top" title="Glaubenssatz bearbeiten" (click)="editIndex = i;">
+						        		<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						        	</a>
+						        	<a data-toggle="tooltip" data-placement="top" title="Glaubenssatz löschen" (click)="deleteMindset(mindset)">
+						        		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+						        	</a>
+						        </td>
+						        <td *ngIf="editIndex === i"><input [(ngModel)]="mindset.name" type="text" class="form-control" placeholder="Name"></td>
+						        <td *ngIf="editIndex === i"><input [(ngModel)]="mindset.oldMindset" type="text" class="form-control" placeholder="aktueller, destruktiver Glaubenssatz"></td>
+						        <td *ngIf="editIndex === i"><input [(ngModel)]="mindset.newMindset" type="text" class="form-control" placeholder="zukünftiger, hilfreicher Glaubenssatz"></td>
+						        <td *ngIf="editIndex === i"><input [(ngModel)]="mindset.status" type="text" class="form-control" placeholder="Status"></td>
+						        <td *ngIf="editIndex === i">
+						        	<a data-toggle="tooltip" data-placement="top" title="Speichern" (click)="updateMindset(mindset); editIndex = i;">
+						        		<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+						        	</a>
+							       	<a data-toggle="tooltip" data-placement="top" title="Abbrechen" (click)="editIndex = -1">
+							      		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						        	</a>
+						        </td>
+				      </tr>
+				      <tr *ngIf="creationMode">
+					    <td><input [(ngModel)]="newMindset.name" type="text" autofocus  	class="form-control" placeholder="Name"></td>
+					    <td><input [(ngModel)]="newMindset.oldMindset" type="text" class="form-control" placeholder="Beschreibung"></td>
+					    <td><input [(ngModel)]="newMindset.newMindset" type="text" class="form-control" placeholder="Beschreibung"></td>
+					    <td><input [(ngModel)]="newMindset.status" type="text" class="form-control" placeholder="Status"></td>
+					    <td>
+					    	<a  data-toggle="tooltip" data-placement="top" title="Glaubenssatz anlegen" (click)="createMindset()">
+					    		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+					       	</a>
+					       	<a data-toggle="tooltip" data-placement="top" title="Abbrechen" (click)="creationMode = false">
+					      		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				        	</a>
+					    </td>
+				      <tr>
+					</tbody>
+			    </table>
+			    <div *ngIf="!creationMode">
+					<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neuen Gewohnheit hinzufügen" (click)="creationMode = true">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					</a>			    	
+			    </div>
+			</div>
+    	</div>
+    </div>
+</div>
+<popupMessage [feedbackMessage]="feedbackMessage"></popupMessage>

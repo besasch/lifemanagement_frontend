@@ -1,0 +1,80 @@
+<div class="container" *ngIf="goal">
+	<form class="form-horizontal" id="goalForm" #goalForm="ngForm"   (ngSubmit)="updateGoal(goal)" role="form">
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingOne">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="create/#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			          Ziel
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+			      <div class="panel-body">
+					  	<div class="form-group">
+						    <label class="col-sm-2 control-label">Kurztitel</label>
+						    <div class="col-sm-10">
+						      	<input type="text" class="form-control" #name="ngModel" [(ngModel)]="goal.name" name="name" placeholder="Kurztitel" autofocus required>
+						    </div>
+						</div>
+						<div class="form-group">
+						    <label for="Optik" class="col-sm-2 control-label">Zielbeschreibung (SMART)</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control" #content="ngModel" [(ngModel)]="goal.content" name="content" placeholder="Eigentliches Ziel" required>
+						    </div>
+						</div>  
+						<div class="form-group">
+						    <label for="Motivation" class="col-sm-2 control-label">Warum möchtest Du das?</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control" #motivation="ngModel" [(ngModel)]="goal.motivation" name="motivation" placeholder="Motivation für das Ziel eintragen" required>
+						    </div>
+						</div>  
+						<div class="form-group">
+							<label for="Zieldatum" class="col-sm-2 control-label">Zieldatum</label>
+							<div class="col-sm-10">
+								<input class="form-control"  type="date" id="Zieldatum" (input)="parseDate($event.target.value)" [value]="goal.due | date:'yyyy-MM-dd'" name="expiryDate" required>
+							</div>
+					  	</div>
+					  	<div class="form-group">
+						    <label for="timehorizont" class="col-sm-2 control-label">Zeithorizont</label>
+						    <div class="col-sm-10">
+								<select class="form-control" name="Time"  #timehorizont="ngModel" [(ngModel)]="goal.timehorizont" required>
+									<option *ngFor="let timehorizontOption of timehorizontOptions">{{timehorizontOption}}</option>
+								</select>
+						    </div>
+						</div>  
+						<div class="form-group">
+						    <label for="lifearea" class="col-sm-2 control-label">Lebensbereich</label>
+						    <div class="col-sm-10">
+								<select class="form-control" name="Time"  #lifearea="ngModel" [(ngModel)]="goal.lifearea" required>
+									<option *ngFor="let lifeareaOption of lifeareaOptions">{{lifeareaOption}}</option>
+								</select>
+						    </div>
+						</div>  
+						<div class="form-group">
+						    <label for="category" class="col-sm-2 control-label">Kategorie</label>
+						    <div class="col-sm-10">
+								<select class="form-control" name="Time"  #category="ngModel" [(ngModel)]="goal.category" required>
+									<option *ngFor="let categoryOption of categoryOptions">{{categoryOption}}</option>
+								</select>
+						    </div>
+						</div>
+						<div class="form-group">
+						    <label for="category" class="col-sm-2 control-label">Erstellt am</label>
+						    <div class="col-sm-10">
+								{{goal.created | date:'dd.MM.yyyy'}}
+						    </div>
+						</div>  
+			      	</div>
+			    </div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-primary pull-right" [disabled]="!goalForm.form.valid || submitted">Ziel speichern</button>
+			</div>
+		</div>
+	</form>
+</div>
+<popupMessage [feedbackMessage]="feedbackMessage"></popupMessage>
+

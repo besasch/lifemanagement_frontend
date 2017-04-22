@@ -1,0 +1,7 @@
+<div class="timeline" *ngIf="events">
+	<div class="event" 
+		*ngFor="let event of events" 
+		[ngStyle]="{ 'margin-left': calculateMarginLeft(event) + '%' }">
+		<span class="event-icon ">&bull;</span><span class="event-title"> {{event.title}}</span>
+	</div>
+</div>

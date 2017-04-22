@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+      	<textarea class="vision" style="width:100%;" rows="20" [(ngModel)]="currentVision.statement" (focus)="showSubmit = true" ></textarea>
+      </div>
+    </div>
+	<div class="row">
+		<div class="col-sm-12">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<button *ngIf="showSubmit" type="submit" (click)="updateVision()" class="btn btn-default pull-right">Anpassen</button>
+		</div>
+	</div>
+  </div>
+  <popupMessage [feedbackMessage]="feedbackMessage"></popupMessage>
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+<div [@triggerMessage]="showMessage" *ngIf="feedbackMessage" class="bg-success text-center" style="
+    position: absolute;
+    bottom: 10%;
+    left: 30%;
+    width: 40%;
+    border-radius: 5px;
+    padding: 10px;
+    z-index:1000;"
+    [style.background]="calculateColor()"> {{feedbackMessage?.message}} </div>
