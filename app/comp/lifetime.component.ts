@@ -22,7 +22,7 @@ import { Component, Input, OnInit, OnChanges } from '@angular/core';
 export class LifetimeComponent implements OnInit, OnChanges { 
   birthday: Date = new Date(1987,11,25,0,0,0);
   today: Date = new Date();
-  deathday: Date = new Date(2067,11,25,0,0,0);
+  deathday: Date = new Date(2073,11,8,0,0,0);
   baseLength: number = 0;
   show: boolean = true;
 

@@ -1,9 +1,9 @@
 export class ToDo {
   public task: string;
   public done: boolean;
-  constructor(){
-    this.task = null;
-    this.done = null;
+  constructor(task: string, done:boolean){
+    this.task = task;
+    this.done = done;
     
   }
 }

@@ -1,0 +1,98 @@
+<div class="container noprint" *ngIf="goals">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="btn-group" role="group" aria-label="...">
+				<div class="btn-group" role="group">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						Kategorie
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li *ngFor="let categoryFilterOption of categoryFilterOptions">
+							<a href="javascript:;" (click)="categoryFilter=categoryFilterOption">
+								<span *ngIf="categoryFilter===categoryFilterOption" class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{categoryFilterOption}}
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" (click)="categoryFilter='Alle'">
+								<span *ngIf="categoryFilter==='Alle'" class="glyphicon glyphicon-ok" aria-hidden="true"></span> Alle
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="btn-group" role="group">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						Zeithorizont
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+						<li *ngFor="let timehorizontFilterOption of timehorizontFilterOptions">
+							<a href="javascript:;" (click)="timehorizontFilter=timehorizontFilterOption">
+								<span *ngIf="timehorizontFilter===timehorizontFilterOption" class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{timehorizontFilterOption}}
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" (click)="timehorizontFilter='Alle'">
+								<span *ngIf="timehorizontFilter==='Alle'" class="glyphicon glyphicon-ok" aria-hidden="true"></span> Alle
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="btn-group" role="group">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						Lebensbereich
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+						<li *ngFor="let lifeareaFilterOption of lifeareaFilterOptions">
+							<a href="javascript:;" (click)="lifeareaFilter=lifeareaFilterOption">
+								<span *ngIf="lifeareaFilter===lifeareaFilterOption" class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{lifeareaFilterOption}}
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" (click)="lifeareaFilter='Alle'">
+								<span *ngIf="lifeareaFilter==='Alle'" class="glyphicon glyphicon-ok" aria-hidden="true"></span> Alle
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12">
+			<timeline [events]="convertToEvents(goals | filterGoals:categoryFilter:lifeareaFilter:timehorizontFilter)"></timeline>
+		</div>
+
+		<div class="col-sm-12">
+			<table class="table table-condensed table-striped">
+				<thead>
+					<tr>
+						<th style="width: 20%;"><a href="">Name</a></th> 
+						<th style="width: 50%;"><a href="">Zielbeschreibung</a></th> 
+						<th style="width: 20%;"><a href="">Zieldatum</a></th>
+						<th style="width: 10%;"><a href="">Aktionen</a></th> 
+					</tr>
+				</thead>
+				<tbody>
+					<tr 
+					class="orderRow" 
+					*ngFor="let goal of goals | filterGoals:categoryFilter:lifeareaFilter:timehorizontFilter">
+					<td [routerLink]="['/goals/edit', goal._id]">{{goal.name}}</td>
+					<td [routerLink]="['/goals/edit', goal._id]">{{goal.content}}</td>
+					<td [routerLink]="['/goals/edit', goal._id]">{{goal.due | date:'dd.MM.yyyy'}}</td>
+					<td>
+						<a data-toggle="tooltip" data-placement="top" title="Ziel bearbeiten" [routerLink]="['/goals/edit', goal._id]"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+						<a data-toggle="tooltip" data-placement="top" title="Ziel löschen" (click)="deleteGoal(goal)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neues Ziel hinzufügen" [routerLink]="['/goals/create']">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			</a>			    	
+		</div>
+		
+
+	</div>
+</div>
+<popupMessage class="noprint" [feedbackMessage]="feedbackMessage"></popupMessage>

@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingOne">
+				<h2 class="panel-title">
+					<a role="button" data-toggle="collapse" data-parent="#accordion" href="create/#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						{{category}} CheckUp 
+					</a>
+				</h2>
+			</div>
+			<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				<div class="panel-body">
+					<form class="form-horizontal" #checkUpForm="ngForm" (ngSubmit)="createCheckUp(checkUp)" id="checkUpForm" role="form"> 
+						<div *ngIf="checkUp.todos">
+							<h4>ToDos</h4>
+							<div class="checkbox col-sm-12" *ngFor="let todo of checkUp.todos">
+								<label>
+									<input type="checkbox" [(ngModel)]="todo.done">{{todo.task}}
+								</label>
+							</div>
+							
+						</div>
+						<div *ngIf="checkUp.questions">
+							<h4>Fragen</h4>
+							<div class="col-sm-12 form-group" *ngFor="let question of checkUp.questions">
+								<label for="{{question.question}}">{{question.question}}</label>
+								<input type="text" class="form-control" id="{{question.question}}" [(ngModel)]="question.answer" placeholder="" [ngModelOptions]="{standalone: true}">
+							</div>
+						</div>
+						<div class="col-sm-offset-2 col-sm-10">
+							<button class="btn btn-primary pull-right" [disabled]="!checkUpForm.form.valid">Speichern</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<popupMessage [feedbackMessage]="feedbackMessage"></popupMessage>
+

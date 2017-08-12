@@ -26,6 +26,10 @@ import { EditCheckupQuestionsComponent }  from './editcheckupquestions/editcheck
 import { FrameworkComponent }  from './framework/framework.component';
 import { TimeLineComponent } from './timeline/timeline.component';
 import { LifetimeComponent } from './comp/lifetime.component';
+import { DoCheckupComponent } from './docheckup/docheckup.component';
+import { ListCheckUpsComponent } from './listcheckups/listcheckups.component';
+import { ManageCheckupsComponent } from './managecheckups/managecheckups.component';
+
 
 import { PopUpMessageComponent } from './comp/popupmessage.component';
 
@@ -61,7 +65,9 @@ import { FilterGoals } from './pipes/filterGoal.pipe';
     FrameworkComponent,
     FilterGoals,
     TimeLineComponent,
-    LifetimeComponent
+    LifetimeComponent,
+    DoCheckupComponent,
+    ManageCheckupsComponent
   ],
   bootstrap: [ 
   	AppComponent

@@ -15,6 +15,7 @@ import { FrameworkComponent }  from '../framework/framework.component';
 
 //Checkups
 import { EditCheckupQuestionsComponent }  from '../editcheckupquestions/editcheckupquestions.component';
+import { ManageCheckupsComponent } from '../managecheckups/managecheckups.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
     { path: 'habbits', component: ManageHabbitsComponent },
     { path: 'mindsets', component: ManageMindsetsComponent },
     { path: 'checkups', redirectTo: 'checkups/editcheckupquestions' },
+    { path: 'checkups/weekly', component: ManageCheckupsComponent },
     { path: 'checkups/editcheckupquestions', component: EditCheckupQuestionsComponent },
     { path: 'framework', component: FrameworkComponent },
 ];
