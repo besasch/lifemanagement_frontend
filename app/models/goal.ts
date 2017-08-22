@@ -10,7 +10,7 @@ export class Goal {
   public category: string;
   public timehorizont: string;
   public goalReachedIndicator: Indicator;
-  public statusLog: Array<StatusLogItem>;
+  public statusLog: Array<StatusLogItem> = new Array<StatusLogItem>();
   public subgoals: Goal[];
   public created: Date;
   constructor(){

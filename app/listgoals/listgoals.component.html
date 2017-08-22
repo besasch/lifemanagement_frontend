@@ -66,33 +66,35 @@
 			<table class="table table-condensed table-striped">
 				<thead>
 					<tr>
-						<th style="width: 20%;"><a href="">Name</a></th> 
-						<th style="width: 50%;"><a href="">Zielbeschreibung</a></th> 
+						<th style="width: 20%;"><a href="">Name</a></th>
+						<th style="width: 50%;"><a href="">Zielbeschreibung</a></th>
 						<th style="width: 20%;"><a href="">Zieldatum</a></th>
-						<th style="width: 10%;"><a href="">Aktionen</a></th> 
+						<th style="width: 10%;"><a href="">Aktionen</a></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr 
-					class="orderRow" 
-					*ngFor="let goal of goals | filterGoals:categoryFilter:lifeareaFilter:timehorizontFilter">
-					<td [routerLink]="['/goals/edit', goal._id]">{{goal.name}}</td>
-					<td [routerLink]="['/goals/edit', goal._id]">{{goal.content}}</td>
-					<td [routerLink]="['/goals/edit', goal._id]">{{goal.due | date:'dd.MM.yyyy'}}</td>
-					<td>
-						<a data-toggle="tooltip" data-placement="top" title="Ziel bearbeiten" [routerLink]="['/goals/edit', goal._id]"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-						<a data-toggle="tooltip" data-placement="top" title="Ziel löschen" (click)="deleteGoal(goal)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<div>
-			<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neues Ziel hinzufügen" [routerLink]="['/goals/create']">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-			</a>			    	
+					<tr class="orderRow" *ngFor="let goal of goals | filterGoals:categoryFilter:lifeareaFilter:timehorizontFilter; let i=index;">
+						<td [routerLink]="['/goals/edit', goal._id]">{{goal.name}}</td>
+						<td [routerLink]="['/goals/edit', goal._id]">{{goal.content}}</td>
+						<td [routerLink]="['/goals/edit', goal._id]">{{goal.due | date:'dd.MM.yyyy'}}</td>
+						<td>
+							<a data-toggle="tooltip" href="javascript:;" data-placement="top" title="Fortschritt dokumentieren" (click)="showProgressLogger = i"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span></a>
+							<a data-toggle="tooltip" href="javascript:;" data-placement="top" title="Ziel bearbeiten" [routerLink]="['/goals/edit', goal._id]"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+							<a data-toggle="tooltip" href="javascript:;" data-placement="top" title="Ziel löschen" (click)="deleteGoal(goal)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+							<div style="width: 150px;">
+								<input *ngIf="showProgressLogger === i" type="text" class="form-control"  name="name" [(ngModel)]="newStatusLogItem.indicatorStatus.name" placeholder="Name" required>
+								<input *ngIf="showProgressLogger === i" type="text" class="form-control"  name="wert" [(ngModel)]="newStatusLogItem.indicatorStatus.value" placeholder="Wert" required>
+								<a data-toggle="tooltip" href="javascript:;" data-placement="top" title="Fortschritt hinzufügen" (click)="addProgress(goal)"><span *ngIf="showProgressLogger === i" class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neues Ziel hinzufügen" [routerLink]="['/goals/create']">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</a>
+			</div>
 		</div>
-		
-
 	</div>
-</div>
-<popupMessage class="noprint" [feedbackMessage]="feedbackMessage"></popupMessage>
+	<popupMessage class="noprint" [feedbackMessage]="feedbackMessage"></popupMessage>

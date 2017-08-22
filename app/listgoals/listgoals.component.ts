@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 
 import { Goal } from '../models/goal';
+import { StatusLogItem } from '../models/statuslogitem';
+
 import { Event } from '../models/event';
 import { Title } from '@angular/platform-browser';
 import { FeedbackMessage } from '../models/feedbackMessage';
@@ -31,6 +33,8 @@ export class ListGoalsComponent implements OnInit, OnDestroy {
   categoryFilterOptions: string[] = CATEGORIES;
   timehorizontFilterOptions: string[] = TIMEHORIZONTS;
   lifeareaFilterOptions: string[] = LIFEAREAS;
+  showProgressLogger: number = -1;
+  newStatusLogItem: StatusLogItem = new StatusLogItem();
 
   constructor(private goalService: GoalService, private cdr: ChangeDetectorRef, private titleService: Title) {
     this.cdr = cdr;
@@ -66,6 +70,21 @@ export class ListGoalsComponent implements OnInit, OnDestroy {
       err => {
         this.feedbackMessage = new FeedbackMessage("Ziel konnte nicht gelöscht werden.", "Ziele konnte leider nicht gelöscht werden. Schließen Sie die Anwendung und starten Sie diese erneut.", "error");
       });
+  }
+  addProgress(goal: Goal){
+    this.newStatusLogItem.timestamp  = +new Date();
+    if(!goal.statusLog){
+      goal.statusLog = new Array<StatusLogItem>();
+    }
+    goal.statusLog.push(this.newStatusLogItem);
+    this.goalService.updateGoal(goal).subscribe( () => {
+        this.feedbackMessage = new FeedbackMessage("Fortschritt hinzufügt.", "Fortschritt hinzufügt.", "success");
+    },
+    err => {
+      this.feedbackMessage = new FeedbackMessage("Fortschritt konnte nicht hinzugefügt werden.", "Fortschritt konnte nicht hinzugefügt werden.", "error");
+    });
+    this.showProgressLogger = -1;
+    this.newStatusLogItem = new StatusLogItem();
   }
 
   convertToEvents(goals: Goal[]): Event[] {
