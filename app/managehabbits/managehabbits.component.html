@@ -1,63 +1,88 @@
 <div class="container" *ngIf="habbits">
-    <div class="row">
-  		<div class="col-sm-12">
-		    <div class="table-responsive">
-			    <table class="table table-condensed table-striped">
-				   <thead>
-				      <tr>
-						<th style="width: 25%;"><a href="">Name</a></th> 
-						<th style="width: 35%;"><a href="">Beschreibung</a></th>
-				        <th style="width: 20%;"><a href="">Status</a></th> 
-				      	<th style="width: 10%;"><a href="">Aktionen</a></th> 
-				      </tr>
-			      </thead>
-			      <tbody>
-				      <tr class="orderRow" *ngFor="let habbit of habbits; let i=index; ">				        
-						        <td *ngIf="editIndex !== i">{{habbit.name}}</td>
-						        <td *ngIf="editIndex !== i">{{habbit.content}}</td>
-						        <td *ngIf="editIndex !== i">{{habbit.status}}</td>
-						        <td *ngIf="editIndex !== i">
-						        	<a data-toggle="tooltip" data-placement="top" title="Gewohnheit bearbeiten" (click)="editIndex = i;">
-						        		<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-						        	</a>
-						        	<a data-toggle="tooltip" data-placement="top" title="Gewohnheit löschen" (click)="deleteHabbit(habbit)">
-						        		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-						        	</a>
-						        </td>
-						        <td *ngIf="editIndex === i"><input [(ngModel)]="habbit.name" type="text" class="form-control" placeholder="Name"></td>
-						        <td *ngIf="editIndex === i"><input [(ngModel)]="habbit.content" type="text" class="form-control" placeholder="Beschreibung"></td>
-						        <td *ngIf="editIndex === i"><input [(ngModel)]="habbit.status" type="text" class="form-control" placeholder="Status"></td>
-						        <td *ngIf="editIndex === i">
-						        	<a data-toggle="tooltip" data-placement="top" title="Speichern" (click)="updateHabbit(habbit); editIndex = i;">
-						        		<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-						        	</a>
-							       	<a data-toggle="tooltip" data-placement="top" title="Abbrechen" (click)="editIndex = -1">
-							      		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-						        	</a>
-						        </td>
-				      </tr>
-				      <tr *ngIf="creationMode">
-					    <td><input [(ngModel)]="newHabbit.name" type="text" autofocus  	class="form-control" placeholder="Name"></td>
-					    <td><input [(ngModel)]="newHabbit.content" type="text" class="form-control" placeholder="Beschreibung"></td>
-					    <td><input [(ngModel)]="newHabbit.status" type="text" class="form-control" placeholder="Status"></td>
-					    <td>
-					    	<a  data-toggle="tooltip" data-placement="top" title="Gewohnheit anlegen" (click)="createHabbit()">
-					    		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-					       	</a>
-					       	<a data-toggle="tooltip" data-placement="top" title="Abbrechen" (click)="creationMode = false">
-					      		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-				        	</a>
-					    </td>
-				      <tr>
-					</tbody>
-			    </table>
-			    <div *ngIf="!creationMode">
-					<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neuen Gewohnheit hinzufügen" (click)="creationMode = true">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-					</a>			    	
-			    </div>
-			</div>
-    	</div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="btn-group" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Kategorie
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li *ngFor="let habbitStatusFilterOption of habbitStatusFilterOptions">
+              <a href="javascript:;" (click)="habbitStatusFilter=habbitStatusFilterOption">
+                <span *ngIf="habbitStatusFilter===habbitStatusFilterOption" class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{habbitStatusFilterOption}}
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;" (click)="habbitStatusFilter='Alle'">
+                <span *ngIf="habbitStatusFilter==='Alle'" class="glyphicon glyphicon-ok" aria-hidden="true"></span> Alle
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-</div>
-<popupMessage [feedbackMessage]="feedbackMessage"></popupMessage>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-responsive">
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Name</th>
+              <th style="width: 35%;">Beschreibung</th>
+              <th style="width: 20%;">Status</th>
+              <th style="width: 10%;">Aktionen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="orderRow" *ngFor="let habbit of habbits | filterHabbits:habbitStatusFilter; let i=index; ">
+              <td *ngIf="editIndex !== i">{{habbit.name}}</td>
+              <td *ngIf="editIndex !== i">{{habbit.content}}</td>
+              <td *ngIf="editIndex !== i">{{habbit.status}}</td>
+              <td *ngIf="editIndex !== i">
+                <a data-toggle="tooltip" data-placement="top" title="Gewohnheit bearbeiten" (click)="editIndex = i;">
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </a>
+                <a data-toggle="tooltip" data-placement="top" title="Gewohnheit löschen" (click)="deleteHabbit(habbit)">
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </a>
+              </td>
+              <td *ngIf="editIndex === i"><input [(ngModel)]="habbit.name" type="text" class="form-control" placeholder="Name"></td>
+              <td *ngIf="editIndex === i"><input [(ngModel)]="habbit.content" type="text" class="form-control" placeholder="Beschreibung"></td>
+              <td *ngIf="editIndex === i"><input [(ngModel)]="habbit.status" type="text" class="form-control" placeholder="Status"></td>
+              <td *ngIf="editIndex === i">
+                <a data-toggle="tooltip" data-placement="top" title="Speichern" (click)="updateHabbit(habbit); editIndex = i;">
+                  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                </a>
+                <a data-toggle="tooltip" data-placement="top" title="Abbrechen" (click)="editIndex = -1">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="creationMode">
+              <td><input [(ngModel)]="newHabbit.name" type="text" autofocus  	class="form-control" placeholder="Name"></td>
+              <td><input [(ngModel)]="newHabbit.content" type="text" class="form-control" placeholder="Beschreibung"></td>
+              <td><input [(ngModel)]="newHabbit.status" type="text" class="form-control" placeholder="Status"></td>
+              <td>
+                <a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Gewohnheit anlegen" (click)="createHabbit()">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+                <a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Abbrechen" (click)="creationMode = false">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+              </td>
+              <tr>
+              </tbody>
+            </table>
+            <div *ngIf="!creationMode">
+              <a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neuen Gewohnheit hinzufügen" (click)="creationMode = true">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <popupMessage [feedbackMessage]="feedbackMessage"></popupMessage>

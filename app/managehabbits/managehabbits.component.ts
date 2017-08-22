@@ -7,16 +7,18 @@ import { HabbitService } from '../services/habbit.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
+import { HABBIT_STATUSES } from '../const/constants';
+
 @Component({
   moduleId: module.id,
   selector: 'managehabbits',
   templateUrl: `managehabbits.component.html`,
 })
-export class ManageHabbitsComponent implements OnInit, OnDestroy { 
- 
+export class ManageHabbitsComponent implements OnInit, OnDestroy {
+
   constructor(private habbitService: HabbitService, private titleService: Title) {
         this.titleService.setTitle('Gewohnheiten');
-  } 
+  }
 
   getHabbitsSubscription: Subscription;
   habbits: Habbit[];
@@ -24,21 +26,22 @@ export class ManageHabbitsComponent implements OnInit, OnDestroy {
   editIndex: number = -1;
   newHabbit: Habbit = new Habbit();
   feedbackMessage: FeedbackMessage = null;
-
+  habbitStatusFilterOptions: string[] = HABBIT_STATUSES;
+  habbitStatusFilter: string = "im Aufbau";
 
   ngOnInit(): void {
-    this.getHabbitsSubscription = this.habbitService.getHabbits().subscribe((habbits: Habbit[]) => 
-      {  
+    this.getHabbitsSubscription = this.habbitService.getHabbits().subscribe((habbits: Habbit[]) =>
+      {
         this.habbits = Object.create(habbits);
 
       });
   }
-  
+
 
   ngOnDestroy(): void {
     this.getHabbitsSubscription.unsubscribe();
   }
-  
+
 
   createHabbit(): void{
     this.newHabbit.created = new Date();
@@ -55,7 +58,7 @@ export class ManageHabbitsComponent implements OnInit, OnDestroy {
               this.feedbackMessage = new FeedbackMessage("Gewohnheit konnte nicht angelegt werden.", "Gewohnheit konnte nicht angelegt werden.", "error");
             });
   }
-  
+
   updateHabbit(habbit: Habbit): void{
     this.habbitService.updateHabbit(habbit)
           .subscribe(
@@ -66,7 +69,7 @@ export class ManageHabbitsComponent implements OnInit, OnDestroy {
               this.feedbackMessage = new FeedbackMessage("Gewohnheit konnte leider nicht aktualisiert werden.", "Gewohnheit konnte leider nicht aktualisiert werden.", "error");
             });
   }
-  
+
 
   deleteHabbit(habbit: Habbit): void{
     this.habbitService.deleteHabbit(habbit._id)
@@ -80,7 +83,7 @@ export class ManageHabbitsComponent implements OnInit, OnDestroy {
               this.feedbackMessage = new FeedbackMessage("Gewohnheit konnte nicht aktualisiert werden", "Gewohnheit konnte nicht aktualisiert werden.", "error");
           });
   }
-  
 
-  
+
+
 }

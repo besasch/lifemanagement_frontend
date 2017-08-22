@@ -22,13 +22,13 @@
 						    <div class="col-sm-10">
 						      <input type="text" class="form-control" #content="ngModel" [(ngModel)]="goal.content" name="content" placeholder="Eigentliches Ziel" required>
 						    </div>
-						</div>  
+						</div>
 						<div class="form-group">
 						    <label for="Motivation" class="col-sm-2 control-label">Warum möchtest Du das?</label>
 						    <div class="col-sm-10">
 						      <input type="text" class="form-control" #motivation="ngModel" [(ngModel)]="goal.motivation" name="motivation" placeholder="Motivation für das Ziel eintragen" required>
 						    </div>
-						</div>  
+						</div>
 						<div class="form-group">
 							<label for="Zieldatum" class="col-sm-2 control-label">Zieldatum</label>
 							<div class="col-sm-10">
@@ -42,24 +42,33 @@
 									<option *ngFor="let timehorizontOption of timehorizontOptions">{{timehorizontOption}}</option>
 								</select>
 						    </div>
-						</div>  
+						</div>
 						<div class="form-group">
 						    <label for="lifearea" class="col-sm-2 control-label">Lebensbereich</label>
 						    <div class="col-sm-10">
-								<select class="form-control" name="Time"  #lifearea="ngModel" [(ngModel)]="goal.lifearea" required>
+								<select class="form-control" name="Lifearea"  #lifearea="ngModel" [(ngModel)]="goal.lifearea" required>
 									<option *ngFor="let lifeareaOption of lifeareaOptions">{{lifeareaOption}}</option>
 								</select>
 						    </div>
-						</div>  
+						</div>
 						<div class="form-group">
 						    <label for="category" class="col-sm-2 control-label">Kategorie</label>
 						    <div class="col-sm-10">
-								<select class="form-control" name="Time"  #category="ngModel" [(ngModel)]="goal.category" required>
+								<select class="form-control" name="Category"  #category="ngModel" [(ngModel)]="goal.category" required>
 									<option *ngFor="let categoryOption of categoryOptions">{{categoryOption}}</option>
 								</select>
 						    </div>
-						</div>  
-			      	</div>
+						</div>
+						<div class="form-group">
+						    <label for="goalReachedIndicator" class="col-sm-2 control-label">Erreicht wenn</label>
+						    <div class="col-sm-7">
+									<input type="text" class="form-control" [(ngModel)]="goal.goalReachedIndicator.name" placeholder="Indikator" name="goalReachedIndicatorName"  required>
+						    </div>
+								<div class="col-sm-3">
+									<input type="text" class="form-control" [(ngModel)]="goal.goalReachedIndicator.value" placeholder="Wert" name="goalReachedIndicatorValue"  required>
+						    </div>
+						</div>
+			     </div>
 			    </div>
 			</div>
 		</div>
@@ -71,4 +80,3 @@
 	</form>
 </div>
 <popupMessage [feedbackMessage]="feedbackMessage"></popupMessage>
-

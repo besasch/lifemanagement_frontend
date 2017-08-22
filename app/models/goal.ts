@@ -1,4 +1,5 @@
-
+import { Indicator } from './indicator';
+import { StatusLogItem } from './statusLogItem';
 export class Goal {
   public _id: string;
   public name: string;
@@ -8,6 +9,8 @@ export class Goal {
   public lifearea: string;
   public category: string;
   public timehorizont: string;
+  public goalReachedIndicator: Indicator;
+  public statusLog: Array<StatusLogItem>;
   public subgoals: Goal[];
   public created: Date;
   constructor(){
@@ -21,5 +24,7 @@ export class Goal {
   	this.timehorizont = null;
   	this.subgoals = null;
   	this.created = null;
+    this.goalReachedIndicator = new Indicator();
+    this.statusLog = null;
   }
 }

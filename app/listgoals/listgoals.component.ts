@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/combineLatest';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/do';
-import { LIFEAREAS, CATEGORIES, TIMEHORIZONTS } from '../const/constants';
+import { LIFEAREAS, CATEGORIES, TIMEHORIZONTS, HABBIT_STATUSES } from '../const/constants';
 
 
 
@@ -20,7 +20,7 @@ import { LIFEAREAS, CATEGORIES, TIMEHORIZONTS } from '../const/constants';
   selector: 'listgoals',
   templateUrl: 'listgoals.component.html',
 })
-export class ListGoalsComponent implements OnInit, OnDestroy { 
+export class ListGoalsComponent implements OnInit, OnDestroy {
   getGoalsSubscription: Subscription;
   goals: Goal[];
   feedbackMessage: FeedbackMessage;
@@ -36,16 +36,16 @@ export class ListGoalsComponent implements OnInit, OnDestroy {
     this.cdr = cdr;
     this.titleService.setTitle('Zielübersicht');
   } // with this Angular will know to supply an instance of the GoalService when it creates a new AppComponent
-  
+
   ngOnInit(): void {
     this.getGoalsSubscription = this.goalService.getGoals()
     .subscribe(
-      (goals) => { 
+      (goals) => {
         this.goals = goals;
       },
       (err) => {
         this.feedbackMessage = new FeedbackMessage("Ziele konnten nicht geladen werden.", "Leider ist der Server aktuell nicht erreichbar. Deswegen werden keine Ziele angezeigt.", "error");
-      });  
+      });
   }
 
   ngOnDestroy(): void {

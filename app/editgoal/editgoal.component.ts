@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { FeedbackMessage } from '../models/feedbackMessage';
 
 import { Goal } from '../models/goal'
+import { Indicator } from '../models/indicator'
 import { GoalService } from '../services/goal.service';
 import 'rxjs/add/operator/switchMap';
 import { LIFEAREAS, CATEGORIES, TIMEHORIZONTS } from '../const/constants';
@@ -15,24 +16,30 @@ import { LIFEAREAS, CATEGORIES, TIMEHORIZONTS } from '../const/constants';
   selector: 'editgoal',
   templateUrl: `editgoal.component.html`,
 })
-export class EditGoalComponent implements OnInit { 
+export class EditGoalComponent implements OnInit {
   goal: Goal;
   feedbackMessage: FeedbackMessage = null;
   submitted: boolean = false;
   categoryOptions: string[] = CATEGORIES;
   timehorizontOptions: string[] = TIMEHORIZONTS;
   lifeareaOptions: string[] = LIFEAREAS;
-  
+
   constructor(
-  	private goalService: GoalService, 
-  	private route: ActivatedRoute, 
+  	private goalService: GoalService,
+  	private route: ActivatedRoute,
   	private location: Location,  private titleService: Title) {
       this.titleService.setTitle('Ziel anpassen');
-  } 
+  }
   ngOnInit(): void {
   	  this.route.params
       	.switchMap((params: Params) => this.goalService.getGoal(params['id']))
-      	.subscribe(goal => this.goal = goal);
+      	.subscribe(goal =>
+          {
+            if(goal.goalReachedIndicator === null){
+              goal.goalReachedIndicator = new Indicator();
+            }
+          this.goal = goal
+        });
   }
 
   updateGoal(): void {
@@ -49,7 +56,7 @@ export class EditGoalComponent implements OnInit {
   }
 
 
-  
+
   parseDate(dateString: string): Date {
     if (dateString) {
       return this.goal.due = new Date(dateString);

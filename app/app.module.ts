@@ -41,19 +41,21 @@ import { CheckUpTemplateService } from './services/checkUpTemplate.service';
 import { CheckUpService } from './services/checkUp.service';
 
 import { FilterGoals } from './pipes/filterGoal.pipe';
+import { FilterHabbits } from './pipes/filterHabbit.pipe';
+
 
 
 @NgModule({
-  imports:      [ 
-  	BrowserModule, 
+  imports:      [
+  	BrowserModule,
   	AppRoutingModule,
     HttpModule,
 	  FormsModule
   ],
-  declarations: [ 
+  declarations: [
   	AppComponent,
-  	NavComponent, 
-  	MainComponent, 
+  	NavComponent,
+  	MainComponent,
   	VisionComponent,
     PopUpMessageComponent,
     ListGoalsComponent,
@@ -64,15 +66,16 @@ import { FilterGoals } from './pipes/filterGoal.pipe';
     EditCheckupQuestionsComponent,
     FrameworkComponent,
     FilterGoals,
+    FilterHabbits,
     TimeLineComponent,
     LifetimeComponent,
     DoCheckupComponent,
     ManageCheckupsComponent
   ],
-  bootstrap: [ 
+  bootstrap: [
   	AppComponent
   ],
-  providers: [ 
+  providers: [
   	VisionService,
     GoalService,
     HabbitService,
@@ -81,5 +84,5 @@ import { FilterGoals } from './pipes/filterGoal.pipe';
     CheckUpService
   ]
 })
-export class AppModule { 
+export class AppModule {
 }
