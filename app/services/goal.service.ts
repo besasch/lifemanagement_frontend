@@ -18,8 +18,15 @@ export class GoalService {
 	constructor(private http: Http) { }
 
 
-	getGoals(): Observable<Goal[]> { 
+	getGoals(): Observable<Goal[]> {
 		const url = `${this.goalsUrl}`;
+		return this.http.get(url)
+            .map(this.extractData) //remove .data
+            .catch(this.handleError);
+	}
+
+	getNotYetReachedGoals(): Observable<Goal[]> {
+		const url = `${this.goalsUrl}/status=notreached`;
 		return this.http.get(url)
             .map(this.extractData) //remove .data
             .catch(this.handleError);
@@ -47,7 +54,7 @@ export class GoalService {
 		    .catch(this.handleError);
 	};
 
-	
+
 	deleteGoal(id: string): Observable<Goal> {
 	  	const url = `${this.goalsUrl}/${id}`;
 		return this.http.delete(url, {headers: this.headers})

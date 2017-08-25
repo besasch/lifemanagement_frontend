@@ -9,6 +9,7 @@ export class Goal {
   public lifearea: string;
   public category: string;
   public timehorizont: string;
+  public status: string;
   public goalReachedIndicator: Indicator;
   public statusLog: Array<StatusLogItem> = new Array<StatusLogItem>();
   public subgoals: Goal[];
@@ -23,6 +24,7 @@ export class Goal {
   	this.category = null;
   	this.timehorizont = null;
   	this.subgoals = null;
+    this.status = null;
   	this.created = null;
     this.goalReachedIndicator = new Indicator();
     this.statusLog = null;

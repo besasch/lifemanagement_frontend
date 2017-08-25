@@ -42,7 +42,7 @@ export class ListGoalsComponent implements OnInit, OnDestroy {
   } // with this Angular will know to supply an instance of the GoalService when it creates a new AppComponent
 
   ngOnInit(): void {
-    this.getGoalsSubscription = this.goalService.getGoals()
+    this.getGoalsSubscription = this.goalService.getNotYetReachedGoals()
     .subscribe(
       (goals) => {
         this.goals = goals;
@@ -85,6 +85,17 @@ export class ListGoalsComponent implements OnInit, OnDestroy {
     });
     this.showProgressLogger = -1;
     this.newStatusLogItem = new StatusLogItem();
+  }
+
+  markAsReached(goal: Goal){
+    goal.status="reached";
+    this.goalService.updateGoal(goal).subscribe( () => {
+        this.feedbackMessage = new FeedbackMessage("Ziel wurde als erreicht gekennzeichnet.", "Ziel wurde als erreicht gekennzeichnet.", "success");
+    },
+    err => {
+      this.feedbackMessage = new FeedbackMessage("Ziel konnte nicht als erreicht gekennzeichnet werden.", "Ziel konnte nicht als erreicht gekennzeichnet werden.", "error");
+    });
+
   }
 
   convertToEvents(goals: Goal[]): Event[] {

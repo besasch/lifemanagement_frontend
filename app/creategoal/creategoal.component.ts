@@ -15,7 +15,7 @@ import { LIFEAREAS, CATEGORIES, TIMEHORIZONTS } from '../const/constants';
   templateUrl: `creategoal.component.html`,
   providers:[RouterLink]
 })
-export class CreateGoalComponent implements OnInit { 
+export class CreateGoalComponent implements OnInit {
   goal: Goal;
   feedbackMessage: FeedbackMessage = null;
   submitted: boolean = false;
@@ -25,6 +25,7 @@ export class CreateGoalComponent implements OnInit {
 
   constructor(private goalService: GoalService, private titleService: Title, private router: RouterLink) {
     this.goal = new Goal();
+    this.goal.status = "set";
     this.titleService.setTitle('Neues Ziel definieren');
     this.router = router;
   } // with this Angular will know to supply an instance of the GoalService when it creates a new AppComponent
@@ -32,8 +33,8 @@ export class CreateGoalComponent implements OnInit {
   }
 
 
-  createGoal(newGoal: Goal): void { 
-    this.goal.created = new Date();  
+  createGoal(newGoal: Goal): void {
+    this.goal.created = new Date();
     this.submitted = true;
     this.goalService.createGoal(newGoal)
     .subscribe(

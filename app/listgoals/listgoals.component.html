@@ -81,10 +81,12 @@
 							<a data-toggle="tooltip" href="javascript:;" data-placement="top" title="Fortschritt dokumentieren" (click)="showProgressLogger = i"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span></a>
 							<a data-toggle="tooltip" href="javascript:;" data-placement="top" title="Ziel bearbeiten" [routerLink]="['/goals/edit', goal._id]"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
 							<a data-toggle="tooltip" href="javascript:;" data-placement="top" title="Ziel löschen" (click)="deleteGoal(goal)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+							<a data-toggle="tooltip" href="javascript:;" data-placement="top" title="Ziel erreicht" (click)="markAsReached(goal)"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
 							<div style="width: 150px;">
 								<input *ngIf="showProgressLogger === i" type="text" class="form-control"  name="name" [(ngModel)]="newStatusLogItem.indicatorStatus.name" placeholder="Name" required>
 								<input *ngIf="showProgressLogger === i" type="text" class="form-control"  name="wert" [(ngModel)]="newStatusLogItem.indicatorStatus.value" placeholder="Wert" required>
 								<a data-toggle="tooltip" href="javascript:;" data-placement="top" title="Fortschritt hinzufügen" (click)="addProgress(goal)"><span *ngIf="showProgressLogger === i" class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+
 							</div>
 						</td>
 					</tr>
