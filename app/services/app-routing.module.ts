@@ -10,6 +10,8 @@ import { EditGoalComponent }  from '../editgoal/editgoal.component';
 import { CreateGoalComponent }  from '../creategoal/creategoal.component';
 import { ManageHabbitsComponent }  from '../managehabbits/managehabbits.component';
 import { ManageMindsetsComponent }  from '../managemindsets/managemindsets.component';
+import { ManageWishsComponent }  from '../managewishs/managewishs.component';
+import { ManageLearningFieldsComponent } from '../managelearningfields/managelearningfields.component';
 import { FrameworkComponent }  from '../framework/framework.component';
 
 
@@ -32,6 +34,8 @@ const routes: Routes = [
     { path: 'checkups/weekly', component: ManageCheckupsComponent },
     { path: 'checkups/editcheckupquestions', component: EditCheckupQuestionsComponent },
     { path: 'framework', component: FrameworkComponent },
+    { path: 'wishs', component: ManageWishsComponent },
+    { path: 'learningFields', component: ManageLearningFieldsComponent },
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes, {useHash: true}) ],

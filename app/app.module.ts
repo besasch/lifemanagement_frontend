@@ -21,6 +21,8 @@ import { ListGoalsComponent }  from './listgoals/listgoals.component';
 import { EditGoalComponent }  from './editgoal/editgoal.component';
 import { CreateGoalComponent }  from './creategoal/creategoal.component';
 import { ManageHabbitsComponent }  from './managehabbits/managehabbits.component';
+import { ManageWishsComponent }  from './managewishs/managewishs.component';
+import { ManageLearningFieldsComponent } from './managelearningfields/managelearningfields.component';
 import { ManageMindsetsComponent }  from './managemindsets/managemindsets.component';
 import { EditCheckupQuestionsComponent }  from './editcheckupquestions/editcheckupquestions.component';
 import { FrameworkComponent }  from './framework/framework.component';
@@ -39,6 +41,8 @@ import { HabbitService } from './services/habbit.service';
 import { MindsetService } from './services/mindset.service';
 import { CheckUpTemplateService } from './services/checkUpTemplate.service';
 import { CheckUpService } from './services/checkUp.service';
+import { LearningFieldService } from './services/learningField.service';
+import { WishService } from './services/wish.service';
 
 import { FilterGoals } from './pipes/filterGoal.pipe';
 import { FilterHabbits } from './pipes/filterHabbit.pipe';
@@ -62,6 +66,8 @@ import { FilterHabbits } from './pipes/filterHabbit.pipe';
     EditGoalComponent,
     CreateGoalComponent,
     ManageHabbitsComponent,
+    ManageWishsComponent,
+    ManageLearningFieldsComponent,
     ManageMindsetsComponent,
     EditCheckupQuestionsComponent,
     FrameworkComponent,
@@ -81,7 +87,9 @@ import { FilterHabbits } from './pipes/filterHabbit.pipe';
     HabbitService,
     MindsetService,
     CheckUpTemplateService,
-    CheckUpService
+    CheckUpService,
+    LearningFieldService,
+    WishService
   ]
 })
 export class AppModule {

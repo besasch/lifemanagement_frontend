@@ -1,0 +1,59 @@
+<div class="container" *ngIf="learningFields">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-responsive">
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Typ</th>
+              <th style="width: 35%;">Beschreibung</th>
+              <th style="width: 10%;">Aktionen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="orderRow" *ngFor="let learningField of learningFields; let i=index; ">
+              <td *ngIf="editIndex !== i">{{learningField.type}}</td>
+              <td *ngIf="editIndex !== i">{{learningField.content}}</td>
+              <td *ngIf="editIndex !== i">
+                <a data-toggle="tooltip" data-placement="top" title="Lernfeld bearbeiten" (click)="editIndex = i;">
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </a>
+                <a data-toggle="tooltip" data-placement="top" title="Lernfeld löschen" (click)="deleteLearningField(learningField)">
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </a>
+              </td>
+              <td *ngIf="editIndex === i"><input [(ngModel)]="learningField.type" type="text" class="form-control" placeholder="Name"></td>
+              <td *ngIf="editIndex === i"><input [(ngModel)]="learningField.content" type="text" class="form-control" placeholder="Beschreibung"></td>
+              <td *ngIf="editIndex === i">
+                <a data-toggle="tooltip" data-placement="top" title="Speichern" (click)="updateLearningField(learningField); editIndex = i;">
+                  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                </a>
+                <a data-toggle="tooltip" data-placement="top" title="Abbrechen" (click)="editIndex = -1">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="creationMode">
+              <td><input [(ngModel)]="newLearningField.type" type="text" autofocus  	class="form-control" placeholder="Name"></td>
+              <td><input [(ngModel)]="newLearningField.content" type="text" class="form-control" placeholder="Beschreibung"></td>
+              <td>
+                <a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Lernfeld anlegen" (click)="createLearningField()">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+                <a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Abbrechen" (click)="creationMode = false">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+              </td>
+              <tr>
+              </tbody>
+            </table>
+            <div *ngIf="!creationMode">
+              <a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neues Lernfeld hinzufügen" (click)="creationMode = true">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <popupMessage [feedbackMessage]="feedbackMessage"></popupMessage>
