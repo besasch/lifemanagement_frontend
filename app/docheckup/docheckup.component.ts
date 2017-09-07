@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { ToDo } from '../models/todo';
 import { Question } from '../models/question';
@@ -18,24 +19,26 @@ import { FeedbackMessage } from '../models/feedbackMessage';
   selector: 'docheckup',
   templateUrl: `docheckup.component.html`,
   providers:[RouterLink]
-})           
-export class DoCheckupComponent implements OnInit { 
+})
+export class DoCheckupComponent implements OnInit {
   feedbackMessage: FeedbackMessage = null;
   checkUp: CheckUp = new CheckUp();
   checkUpTemplate: CheckUpTemplate = new CheckUpTemplate();
-  @Input() category = "weekly";
+  category = "weekly";
 
-  constructor(private checkUpService: CheckUpService, private checkUpTemplateService: CheckUpTemplateService, private titleService: Title, private router: RouterLink) {
+  constructor(private checkUpService: CheckUpService, private checkUpTemplateService: CheckUpTemplateService, private titleService: Title, private router: RouterLink, private route: ActivatedRoute) {
     this.titleService.setTitle('Check Up!');
     this.router = router;
   } // with this Angular will know to supply an instance of the CheckUpTemplateService when it creates a new AppComponent
   ngOnInit(): void {
-    this.checkUpTemplateService.getCheckUpTemplates().subscribe((checkUpTemplates: CheckUpTemplate[])=>{
-      this.checkUpTemplate = checkUpTemplates.filter((cut:CheckUpTemplate)=>{
-        return cut.category === this.category;
-      })[0];
-
-      this.checkUp = this.createCheckUpWithCheckUpTemplate(this.checkUpTemplate);
+    this.route.params.subscribe(params => {
+       this.category = params['category'];
+       this.checkUpTemplateService.getCheckUpTemplates().subscribe((checkUpTemplates: CheckUpTemplate[])=>{
+         this.checkUpTemplate = checkUpTemplates.filter((cut:CheckUpTemplate)=>{
+           return cut.category === this.category;
+         })[0];
+         this.checkUp = this.createCheckUpWithCheckUpTemplate(this.checkUpTemplate);
+       });
     });
   }
 
@@ -56,7 +59,7 @@ export class DoCheckupComponent implements OnInit {
     return checkUp;
   }
 
-  createCheckUp(newCheckUp: CheckUp): void { 
+  createCheckUp(newCheckUp: CheckUp): void {
     this.checkUpService.createCheckUp(newCheckUp)
     .subscribe(
       (newCheckUp) => {

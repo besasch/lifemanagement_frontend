@@ -13,8 +13,8 @@ import { FeedbackMessage } from '../models/feedbackMessage';
   selector: 'editcheckupquestions',
   templateUrl: `editcheckupquestions.component.html`,
   providers:[RouterLink]
-})           
-export class EditCheckupQuestionsComponent implements OnInit { 
+})
+export class EditCheckupQuestionsComponent implements OnInit {
   feedbackMessage: FeedbackMessage = null;
   dailyCheckUpTemplate: CheckUpTemplate = new CheckUpTemplate();
   weeklyCheckUpTemplate: CheckUpTemplate = new CheckUpTemplate();
@@ -25,6 +25,23 @@ export class EditCheckupQuestionsComponent implements OnInit {
   constructor(private checkUpTemplateService: CheckUpTemplateService, private titleService: Title, private router: RouterLink) {
     this.titleService.setTitle('CheckUp Questions bearbeiten');
     this.router = router;
+    this.setUpData();
+    this.checkUpTemplateService.getCheckUpTemplates().subscribe((checkUpTemplates: CheckUpTemplate[])=>{
+      for(let i = 0; i < checkUpTemplates.length; i++){
+        switch(checkUpTemplates[i].category){
+          case 'daily': this.dailyCheckUpTemplate = checkUpTemplates[i]; break;
+          case 'weekly': this.weeklyCheckUpTemplate = checkUpTemplates[i]; break;
+          case 'monthly': this.monthlyCheckUpTemplate = checkUpTemplates[i]; break;
+          case 'quarterly': this.quarterlyCheckUpTemplate = checkUpTemplates[i]; break;
+          case 'yearly': this.yearlyCheckUpTemplate = checkUpTemplates[i]; break;
+        }
+      }
+    });
+  } // with this Angular will know to supply an instance of the CheckUpTemplateService when it creates a new AppComponent
+  ngOnInit(): void {
+  }
+
+  setUpData(): void {
     this.dailyCheckUpTemplate.questionTemplates = new Array<string>();
     this.dailyCheckUpTemplate.category = "daily";
     this.dailyCheckUpTemplate.created = new Date();
@@ -47,14 +64,11 @@ export class EditCheckupQuestionsComponent implements OnInit {
 
     this.yearlyCheckUpTemplate.questionTemplates = new Array<string>();
     this.yearlyCheckUpTemplate.category = "yearly";
-    this.yearlyCheckUpTemplate.created = new Date(); 
+    this.yearlyCheckUpTemplate.created = new Date();
     this.yearlyCheckUpTemplate.todos = new Array<string>();
-  } // with this Angular will know to supply an instance of the CheckUpTemplateService when it creates a new AppComponent
-  ngOnInit(): void {
   }
 
-
-  createCheckUpQuestionTemplate(newCheckUpTemplate: CheckUpTemplate): void { 
+  createCheckUpQuestionTemplate(newCheckUpTemplate: CheckUpTemplate): void {
     this.checkUpTemplateService.createCheckUpTemplate(newCheckUpTemplate)
     .subscribe(
       (newCheckUpTemplate) => {

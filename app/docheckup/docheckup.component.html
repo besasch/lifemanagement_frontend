@@ -4,21 +4,21 @@
 			<div class="panel-heading" role="tab" id="headingOne">
 				<h2 class="panel-title">
 					<a role="button" data-toggle="collapse" data-parent="#accordion" href="create/#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						{{category}} CheckUp 
+						{{category}} CheckUp
 					</a>
 				</h2>
 			</div>
 			<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 				<div class="panel-body">
-					<form class="form-horizontal" #checkUpForm="ngForm" (ngSubmit)="createCheckUp(checkUp)" id="checkUpForm" role="form"> 
+					<form class="form-horizontal" #checkUpForm="ngForm" (ngSubmit)="createCheckUp(checkUp)" id="checkUpForm" role="form">
 						<div *ngIf="checkUp.todos">
 							<h4>ToDos</h4>
 							<div class="checkbox col-sm-12" *ngFor="let todo of checkUp.todos">
 								<label>
-									<input type="checkbox" [(ngModel)]="todo.done">{{todo.task}}
+									<input type="checkbox" [(ngModel)]="todo.done" [ngModelOptions]="{standalone: true}">{{todo.task}}
 								</label>
 							</div>
-							
+
 						</div>
 						<div *ngIf="checkUp.questions">
 							<h4>Fragen</h4>
@@ -37,4 +37,3 @@
 	</div>
 </div>
 <popupMessage [feedbackMessage]="feedbackMessage"></popupMessage>
-

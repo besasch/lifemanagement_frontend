@@ -20,19 +20,22 @@
 				</a>
 				<ul class="dropdown-menu">
 					<li routerLinkActive="active">
-						<a routerLink="/checkups/weekly">Wöchentliche</a>
+						<a [routerLink]="['/checkups', 'daily']">Tägliche</a>
 					</li>
 					<li routerLinkActive="active">
-						<a routerLink="/checkups/monthly">Monatliche</a>
+						<a [routerLink]="['/checkups', 'weekly']">Wöchentliche</a>
 					</li>
 					<li routerLinkActive="active">
-						<a routerLink="/checkups/quarterly">Quartalsweise</a>
+						<a [routerLink]="['/checkups', 'monthly']">Monatliche</a>
 					</li>
 					<li routerLinkActive="active">
-						<a routerLink="/checkups/yearly">Jährliche</a>
+						<a [routerLink]="['/checkups', 'quarterly']">Quartalsweise</a>
 					</li>
 					<li routerLinkActive="active">
-						<a routerLink="/checkups/editcheckupquestions">Fragen bearbeiten</a>
+						<a [routerLink]="['/checkups', 'yearly']">Jährliche</a>
+					</li>
+					<li routerLinkActive="active">
+						<a routerLink="/editcheckupquestions">Fragen bearbeiten</a>
 					</li>
 				</ul>
 			</li>
