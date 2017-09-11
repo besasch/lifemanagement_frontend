@@ -10,7 +10,7 @@
 			</div>
 			<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 				<div class="panel-body">
-					<form class="form-horizontal" #yearlyForm="ngForm" (ngSubmit)="createCheckUpQuestionTemplate(yearlyCheckUpTemplate)" id="yearlyForm" role="form"> 
+					<form class="form-horizontal" #yearlyForm="ngForm" (ngSubmit)="createCheckUpQuestionTemplate(yearlyCheckUpTemplate)" id="yearlyForm" role="form">
 						<h5>ToDos</h5>
 						<div class="form-group">
 							<div class="col-sm-12">
@@ -19,13 +19,13 @@
 								</ul>
 							</div>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" [(ngModel)]="newYearlyToDo" name="name"  autofocus  /> 
+								<input type="text" class="form-control" [(ngModel)]="newYearlyToDo" name="name"  autofocus  />
 							</div>
 						</div>
 						<div>
 							<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neue ToDo hinzufügen" (click)="yearlyCheckUpTemplate.todos.push(newYearlyToDo)">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</a>			    	
+							</a>
 						</div>
 						<h5>Fragen</h5>
 						<div class="form-group">
@@ -35,13 +35,13 @@
 								</ul>
 							</div>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" [(ngModel)]="newYearlyQuestionTemplate" name="name"  autofocus  /> 
+								<input type="text" class="form-control" [(ngModel)]="newYearlyQuestionTemplate" name="name"  autofocus  />
 							</div>
 						</div>
 						<div>
 							<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neue Frage hinzufügen" (click)="yearlyCheckUpTemplate.questionTemplates.push(newYearlyQuestionTemplate)">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</a>			    	
+							</a>
 						</div>
 						<div class="col-sm-offset-2 col-sm-10">
 							<button class="btn btn-primary pull-right" [disabled]="!yearlyForm.form.valid">Speichern</button>
@@ -60,7 +60,7 @@
 			</div>
 			<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 				<div class="panel-body">
-					<form class="form-horizontal" #quarterlyForm="ngForm" (ngSubmit)="createCheckUpQuestionTemplate(quarterlyCheckUpTemplate)" id="quarterlyForm" role="form"> 
+					<form class="form-horizontal" #quarterlyForm="ngForm" (ngSubmit)="createCheckUpQuestionTemplate(quarterlyCheckUpTemplate)" id="quarterlyForm" role="form">
 						<h5>ToDos</h5>
 						<div class="form-group">
 							<div class="col-sm-12">
@@ -69,13 +69,13 @@
 								</ul>
 							</div>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" [(ngModel)]="newQuarterlyToDo" name="name"  autofocus /> 
+								<input type="text" class="form-control" [(ngModel)]="newQuarterlyToDo" name="name"  autofocus />
 							</div>
 						</div>
 						<div>
 							<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neue ToDo hinzufügen" (click)="quarterlyCheckUpTemplate.todos.push(newQuarterlyToDo)">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</a>			    	
+							</a>
 						</div>
 						<h5>Fragen</h5>
 						<div class="form-group">
@@ -85,13 +85,13 @@
 								</ul>
 							</div>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" [(ngModel)]="newQuarterlyQuestionTemplate" name="name"  autofocus /> 
+								<input type="text" class="form-control" [(ngModel)]="newQuarterlyQuestionTemplate" name="name"  autofocus />
 							</div>
 						</div>
 						<div>
 							<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neue Frage hinzufügen" (click)="quarterlyCheckUpTemplate.questionTemplates.push(newQuarterlyQuestionTemplate)">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</a>			    	
+							</a>
 						</div>
 						<div class="col-sm-offset-2 col-sm-10">
 							<button class="btn btn-primary pull-right" [disabled]="!quarterlyForm.form.valid">Speichern</button>
@@ -110,7 +110,7 @@
 			</div>
 			<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 				<div class="panel-body">
-					<form class="form-horizontal" #monthlyForm="ngForm" (ngSubmit)="createCheckUpQuestionTemplate(monthlyCheckUpTemplate)" id="monthlyForm" role="form"> 
+					<form class="form-horizontal" #monthlyForm="ngForm" (ngSubmit)="createCheckUpQuestionTemplate(monthlyCheckUpTemplate)" id="monthlyForm" role="form">
 						<h5>ToDos</h5>
 						<div class="form-group">
 							<div class="col-sm-12">
@@ -119,13 +119,13 @@
 								</ul>
 							</div>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" [(ngModel)]="newMonthlyTodo" name="name"  autofocus /> 
+								<input type="text" class="form-control" [(ngModel)]="newMonthlyTodo" name="name"  autofocus />
 							</div>
 						</div>
 						<div>
 							<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neue ToDo hinzufügen" (click)="monthlyCheckUpTemplate.todos.push(newMonthlyTodo)">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</a>			    	
+							</a>
 						</div>
 						<h5>Fragen</h5>
 						<div class="form-group">
@@ -135,13 +135,13 @@
 								</ul>
 							</div>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" [(ngModel)]="newMonthlyQuestionTemplate" name="name"  autofocus /> 
+								<input type="text" class="form-control" [(ngModel)]="newMonthlyQuestionTemplate" name="name"  autofocus />
 							</div>
 						</div>
 						<div>
 							<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neue Frage hinzufügen" (click)="monthlyCheckUpTemplate.questionTemplates.push(newMonthlyQuestionTemplate)">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</a>			    	
+							</a>
 						</div>
 						<div class="col-sm-offset-2 col-sm-10">
 							<button class="btn btn-primary pull-right" [disabled]="!monthlyForm.form.valid">Speichern</button>
@@ -160,7 +160,7 @@
 			</div>
 			<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
 				<div class="panel-body">
-					<form class="form-horizontal" #weeklyForm="ngForm" (ngSubmit)="createCheckUpQuestionTemplate(weeklyCheckUpTemplate)" id="weeklyForm" role="form"> 
+					<form class="form-horizontal" #weeklyForm="ngForm" (ngSubmit)="createCheckUpQuestionTemplate(weeklyCheckUpTemplate)" id="weeklyForm" role="form">
 						<h5>ToDos</h5>
 						<div class="form-group">
 							<div class="col-sm-12">
@@ -169,13 +169,13 @@
 								</ul>
 							</div>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" [(ngModel)]="newWeeklyTodo" name="name"  autofocus /> 
+								<input type="text" class="form-control" [(ngModel)]="newWeeklyTodo" name="name"  autofocus />
 							</div>
 						</div>
 						<div>
 							<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neue ToDo hinzufügen" (click)="weeklyCheckUpTemplate.todos.push(newWeeklyTodo)">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</a>			    	
+							</a>
 						</div>
 						<h5>Fragen</h5>
 						<div class="form-group">
@@ -185,13 +185,13 @@
 								</ul>
 							</div>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" [(ngModel)]="newWeeklyQuestionTemplate" name="name"  autofocus /> 
+								<input type="text" class="form-control" [(ngModel)]="newWeeklyQuestionTemplate" name="name"  autofocus />
 							</div>
 						</div>
 						<div>
 							<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neue Frage hinzufügen" (click)="weeklyCheckUpTemplate.questionTemplates.push(newWeeklyQuestionTemplate)">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</a>			    	
+							</a>
 						</div>
 						<div class="col-sm-offset-2 col-sm-10">
 							<button class="btn btn-primary pull-right" [disabled]="!weeklyForm.form.valid">Speichern</button>
@@ -210,7 +210,7 @@
 			</div>
 			<div id="collapseFice" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
 				<div class="panel-body">
-					<form class="form-horizontal" #dailyForm="ngForm" (ngSubmit)="createCheckUpQuestionTemplate(dailyCheckUpTemplate)" id="dailyForm" role="form"> 
+					<form class="form-horizontal" #dailyForm="ngForm" (ngSubmit)="createCheckUpQuestionTemplate(dailyCheckUpTemplate)" id="dailyForm" role="form">
 						<h5>ToDos</h5>
 						<div class="form-group">
 							<div class="col-sm-12">
@@ -219,13 +219,13 @@
 								</ul>
 							</div>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" [(ngModel)]="newDailyTodo" name="name"  autofocus /> 
+								<input type="text" class="form-control" [(ngModel)]="newDailyTodo" name="name"  autofocus />
 							</div>
 						</div>
 						<div>
 							<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neue ToDo hinzufügen" (click)="dailyCheckUpTemplate.todos.push(newDailyTodo)">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</a>			    	
+							</a>
 						</div>
 						<h5>Fragen</h5>
 						<div class="form-group">
@@ -235,13 +235,13 @@
 								</ul>
 							</div>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" [(ngModel)]="newDailyquestionTemplate" name="name"  autofocus /> 
+								<input type="text" class="form-control" [(ngModel)]="newDailyquestionTemplate" name="name"  autofocus />
 							</div>
 						</div>
 						<div>
 							<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Neue Frage hinzufügen" (click)="dailyCheckUpTemplate.questionTemplates.push(newDailyquestionTemplate)">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</a>			    	
+							</a>
 						</div>
 						<div class="col-sm-offset-2 col-sm-10">
 							<button class="btn btn-primary pull-right" [disabled]="!dailyForm.form.valid">Speichern</button>
@@ -253,4 +253,3 @@
 	</div>
 </div>
 <popupMessage [feedbackMessage]="feedbackMessage"></popupMessage>
-

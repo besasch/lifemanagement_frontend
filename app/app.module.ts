@@ -31,8 +31,7 @@ import { LifetimeComponent } from './comp/lifetime.component';
 import { DoCheckupComponent } from './docheckup/docheckup.component';
 import { ListCheckUpsComponent } from './listcheckups/listcheckups.component';
 import { ManageCheckupsComponent } from './managecheckups/managecheckups.component';
-
-
+import { ShowCheckupComponent } from './showcheckup/showcheckup.component';
 import { PopUpMessageComponent } from './comp/popupmessage.component';
 
 import { VisionService } from './services/vision.service';
@@ -69,6 +68,8 @@ import { FilterHabbits } from './pipes/filterHabbit.pipe';
     ManageWishsComponent,
     ManageLearningFieldsComponent,
     ManageMindsetsComponent,
+    ListCheckUpsComponent,
+    ShowCheckupComponent,
     EditCheckupQuestionsComponent,
     FrameworkComponent,
     FilterGoals,

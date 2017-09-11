@@ -18,7 +18,7 @@ import { FrameworkComponent }  from '../framework/framework.component';
 //Checkups
 import { EditCheckupQuestionsComponent }  from '../editcheckupquestions/editcheckupquestions.component';
 import { ManageCheckupsComponent } from '../managecheckups/managecheckups.component';
-
+import { ShowCheckupComponent } from '../showcheckup/showcheckup.component';
 
 const routes: Routes = [
 	//Vision
@@ -32,6 +32,7 @@ const routes: Routes = [
     { path: 'mindsets', component: ManageMindsetsComponent },
     { path: 'checkups', redirectTo: 'editcheckupquestions' },
     { path: 'checkups/:category', component: ManageCheckupsComponent },
+    { path: 'checkups/show/:id', component: ShowCheckupComponent },
     { path: 'editcheckupquestions', component: EditCheckupQuestionsComponent },
     { path: 'framework', component: FrameworkComponent },
     { path: 'wishs', component: ManageWishsComponent },

@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 
 import { ToDo } from '../models/todo';
 import { Question } from '../models/question';
