@@ -11,14 +11,13 @@
 			<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 				<div class="panel-body">
 					<form class="form-horizontal" #checkUpForm="ngForm" (ngSubmit)="createCheckUp(checkUp)" id="checkUpForm" role="form">
-						<div *ngIf="checkUp.todos">
+						<div *ngIf="checkUp.todos && checkUp.todos.length > 0">
 							<h4>ToDos</h4>
 							<div class="checkbox col-sm-12" *ngFor="let todo of checkUp.todos">
 								<label>
 									<input type="checkbox" [(ngModel)]="todo.done" [ngModelOptions]="{standalone: true}">{{todo.task}}
 								</label>
 							</div>
-
 						</div>
 						<div *ngIf="checkUp.questions">
 							<h4>Fragen</h4>
