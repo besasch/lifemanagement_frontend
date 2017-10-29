@@ -21,6 +21,17 @@ export class EditCheckupQuestionsComponent implements OnInit {
   monthlyCheckUpTemplate: CheckUpTemplate = new CheckUpTemplate();
   quarterlyCheckUpTemplate: CheckUpTemplate = new CheckUpTemplate();
   yearlyCheckUpTemplate: CheckUpTemplate = new CheckUpTemplate();
+  newYearlyToDo = "";
+  newYearlyQuestionTemplate = "";
+  newQuarterlyToDo = "";
+  newQuarterlyQuestionTemplate = "";
+  newMonthlyTodo = "";
+  newMonthlyQuestionTemplate = "";
+  newWeeklyTodo = "";
+  newWeeklyQuestionTemplate = "";
+  newDailyTodo = "";
+  newDailyquestionTemplate = "";
+
 
   constructor(private checkUpTemplateService: CheckUpTemplateService, private titleService: Title, private router: RouterLink) {
     this.titleService.setTitle('CheckUp Questions bearbeiten');

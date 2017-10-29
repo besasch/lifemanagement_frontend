@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
   moduleId: module.id,
   selector: 'vision',
   templateUrl: 'vision.component.html',
-  styles: [` 
+  styles: [`
     .vision {
       font-size: 20px;
       border: 0;
@@ -18,18 +18,18 @@ import { Subscription } from 'rxjs/Subscription';
     }
   `]
 })
-export class VisionComponent implements OnInit, OnDestroy { 
+export class VisionComponent implements OnInit, OnDestroy {
   currentVision: Vision;
   getVisionsSubscription: Subscription;
   feedbackMessage: FeedbackMessage = null;
-  
+  showSubmit: boolean = false;
 
   constructor(private visionService: VisionService, private cdr: ChangeDetectorRef, private titleService: Title) {
     this.titleService.setTitle('Vision');
     this.currentVision = new Vision();
   } // with this Angular will know to supply an instance of the PowderService when it creates a new AppComponent
-  
-  ngOnInit(): void {    
+
+  ngOnInit(): void {
    this.getVisionsSubscription = this.visionService.getVisions().subscribe((visions: Vision[])=>{
      let length = visions.length;
      if(!(length <= 0)){
@@ -44,7 +44,7 @@ export class VisionComponent implements OnInit, OnDestroy {
   updateVision(): void {
     this.currentVision.date = new Date();
     this.visionService.createVision(this.currentVision).subscribe(
-      (createdVision: Vision) => { this.feedbackMessage = new FeedbackMessage("","Vision gespeichert","success")}, 
+      (createdVision: Vision) => { this.feedbackMessage = new FeedbackMessage("","Vision gespeichert","success")},
       (err)=> {this.feedbackMessage = new FeedbackMessage("","Vision konnte nicht gespeichert werden","error")});
   }
 

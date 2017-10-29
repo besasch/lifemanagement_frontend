@@ -19,19 +19,19 @@ import { Component, Input, OnInit, OnChanges } from '@angular/core';
   }
   `]
 })
-export class LifetimeComponent implements OnInit, OnChanges { 
+export class LifetimeComponent implements OnInit, OnChanges {
   birthday: Date = new Date(1987,11,25,0,0,0);
   today: Date = new Date();
   deathday: Date = new Date(2073,11,8,0,0,0);
   baseLength: number = 0;
   show: boolean = true;
 
-  constructor() {} 
+  constructor() {}
 
   ngOnInit(): void {
     this.calculateBaseLength()
   }
-  ngOnChanges(): void {
+  ngOnChanges(changes: any): void {
     this.calculateBaseLength()
   }
 
@@ -41,5 +41,5 @@ export class LifetimeComponent implements OnInit, OnChanges {
 
   calculateWidth(): number{
      return ((this.today.getTime() - this.birthday.getTime())/this.baseLength) * 100;
-  } 
+  }
 }

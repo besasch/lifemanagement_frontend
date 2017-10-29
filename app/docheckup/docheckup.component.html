@@ -23,7 +23,7 @@
 							<h4>Fragen</h4>
 							<div class="col-sm-12 form-group" *ngFor="let question of checkUp.questions">
 								<label for="{{question.question}}">{{question.question}}</label>
-								<input type="text" class="form-control" id="{{question.question}}" [(ngModel)]="question.answer" placeholder="" [ngModelOptions]="{standalone: true}">
+								<textarea class="form-control" id="{{question.question}}" rows="3" [(ngModel)]="question.answer" placeholder="" [ngModelOptions]="{standalone: true}"></textarea>
 							</div>
 						</div>
 						<div class="col-sm-offset-2 col-sm-10">

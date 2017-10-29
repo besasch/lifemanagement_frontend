@@ -22,13 +22,13 @@ import { Event } from '../models/event';
   }
   `]
 })
-export class TimeLineComponent implements OnInit, OnChanges { 
- 
+export class TimeLineComponent implements OnInit, OnChanges {
+
   @Input() events: Event[] = null;
   today: Date = new Date();
   baseLength: number = 0;
 
-  constructor() {} 
+  constructor() {}
 
 
 
@@ -37,12 +37,12 @@ export class TimeLineComponent implements OnInit, OnChanges {
       this.baseLength = (this.getLastEvent().getTime() - this.today.getTime()) * 1.05
     }
   }
-  ngOnChanges(): void {
+  ngOnChanges(changes: any): void {
     if(this.events != null){
       this.baseLength = (this.getLastEvent().getTime() - this.today.getTime()) * 1.05
     }
   }
-  
+
 
   getLastEvent(): Date {
     let latestEvent: Date = new Date();
@@ -57,5 +57,5 @@ export class TimeLineComponent implements OnInit, OnChanges {
    calculateMarginLeft(event:Event): number{
 
      return ((event.date.getTime() - this.today.getTime())/this.baseLength) * 100;
-   } 
+   }
 }
